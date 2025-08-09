@@ -36,6 +36,8 @@ export interface FormSchema {
   createdAt: string
 }
 
+export type FormValue = string | number | boolean | string[] | null
+
 export interface FormData {
-  [fieldId: string]: any
+  [fieldId: string]: FormValue
 }

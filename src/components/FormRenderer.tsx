@@ -84,9 +84,16 @@ const FormRenderer: React.FC<FormRendererProps> = ({
         return (
           <TextField
             fullWidth
+            type="text"
             label={field.label}
             value={value}
-            onChange={(e) => handleFieldChange(field.id, e.target.value)}
+            onChange={(e) => {
+              const newValue = e.target.value
+              // Only allow text for text fields
+              if (typeof newValue === 'string') {
+                handleFieldChange(field.id, newValue)
+              }
+            }}
             required={field.required}
             error={!!error}
             helperText={error}
@@ -100,12 +107,19 @@ const FormRenderer: React.FC<FormRendererProps> = ({
             fullWidth
             type="number"
             label={field.label}
-            value={value}
-            onChange={(e) => handleFieldChange(field.id, parseFloat(e.target.value) || '')}
+            value={value === null ? '' : value}
+            onChange={(e) => {
+              const newValue = e.target.value === '' ? null : Number(e.target.value)
+              // Only set if it's a valid number or null
+              if (newValue === null || !isNaN(newValue)) {
+                handleFieldChange(field.id, newValue)
+              }
+            }}
             required={field.required}
             error={!!error}
             helperText={error}
             disabled={isDisabled}
+            inputProps={{ step: "any" }}
           />
         )
 
