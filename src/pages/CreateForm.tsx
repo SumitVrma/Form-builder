@@ -105,9 +105,24 @@ const CreateForm: React.FC = () => {
         onClose={() => setShowAddField(false)}
         maxWidth="md"
         fullWidth
+        PaperProps={{
+          sx: {
+            borderRadius: 2,
+            boxShadow: '0 8px 32px rgba(0,0,0,0.1)',
+          }
+        }}
       >
-        <DialogTitle>Add New Field</DialogTitle>
-        <DialogContent>
+        <DialogTitle sx={{ 
+          bgcolor: 'primary.main', 
+          color: 'white',
+          background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
+          py: 2
+        }}>
+          <Typography variant="h6" component="div">
+            Add New Field
+          </Typography>
+        </DialogTitle>
+        <DialogContent sx={{ py: 3 }}>
           <FieldEditor
             onSave={handleAddField}
             onCancel={() => setShowAddField(false)}
@@ -121,9 +136,24 @@ const CreateForm: React.FC = () => {
         onClose={() => setEditingField(null)}
         maxWidth="md"
         fullWidth
+        PaperProps={{
+          sx: {
+            borderRadius: 2,
+            boxShadow: '0 8px 32px rgba(0,0,0,0.1)',
+          }
+        }}
       >
-        <DialogTitle>Edit Field</DialogTitle>
-        <DialogContent>
+        <DialogTitle sx={{ 
+          bgcolor: 'primary.main', 
+          color: 'white',
+          background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
+          py: 2
+        }}>
+          <Typography variant="h6" component="div">
+            Edit Field
+          </Typography>
+        </DialogTitle>
+        <DialogContent sx={{ py: 3 }}>
           {editingField && (
             <FieldEditor
               field={editingField.field}
@@ -136,9 +166,28 @@ const CreateForm: React.FC = () => {
       </Dialog>
 
       {/* Save Form Dialog */}
-      <Dialog open={showSaveDialog} onClose={() => setShowSaveDialog(false)}>
-        <DialogTitle>Save Form</DialogTitle>
-        <DialogContent>
+      <Dialog 
+        open={showSaveDialog} 
+        onClose={() => setShowSaveDialog(false)}
+        PaperProps={{
+          sx: {
+            borderRadius: 2,
+            boxShadow: '0 8px 32px rgba(0,0,0,0.1)',
+            minWidth: '400px'
+          }
+        }}
+      >
+        <DialogTitle sx={{ 
+          bgcolor: 'primary.main', 
+          color: 'white',
+          background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
+          py: 2
+        }}>
+          <Typography variant="h6" component="div">
+            Save Form
+          </Typography>
+        </DialogTitle>
+        <DialogContent sx={{ py: 3 }}>
           <TextField
             autoFocus
             margin="dense"
@@ -147,13 +196,36 @@ const CreateForm: React.FC = () => {
             variant="outlined"
             value={formName}
             onChange={(e) => setFormName(e.target.value)}
-            sx={{ mt: 1 }}
+            sx={{ 
+              mt: 1,
+              '& .MuiOutlinedInput-root': {
+                borderRadius: 2,
+              }
+            }}
           />
         </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setShowSaveDialog(false)}>Cancel</Button>
-          <Button onClick={handleSaveForm} variant="contained">
-            Save
+        <DialogActions sx={{ p: 3, pt: 1 }}>
+          <Button 
+            onClick={() => setShowSaveDialog(false)}
+            sx={{
+              borderRadius: 20,
+              px: 3,
+              textTransform: 'none'
+            }}
+          >
+            Cancel
+          </Button>
+          <Button 
+            onClick={handleSaveForm} 
+            variant="contained"
+            sx={{
+              borderRadius: 20,
+              px: 3,
+              background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
+              textTransform: 'none'
+            }}
+          >
+            Save Form
           </Button>
         </DialogActions>
       </Dialog>
